@@ -13,7 +13,7 @@ import os
 
 app = Flask(__name__)
 
-init_db()
+
 
 CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 
@@ -25,6 +25,9 @@ cloudinary.config(
     api_secret=os.getenv("API_SECRET")
 )
 
+@app.route("/")
+def home():
+    return "Backend is running 🚀"
 
 @app.route('/api/upload', methods=['POST'])
 def upload_file():
@@ -323,6 +326,8 @@ def init_db():
     conn.commit()
     conn.close()
 
+
+
 '''def get_or_create_patient_folder(patient_name):
     query = f"name = '{patient_name}' and '{PARENT_FOLDER_ID}' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false"
     results = drive_service.files().list(
@@ -341,8 +346,7 @@ def init_db():
         ).execute()
         return folder.get('id')
     return items[0]['id']'''
-
-
+ # ✅ MUST BE HERE
 # --- API ROUTES ---
 
 
@@ -878,7 +882,8 @@ def delete_bill(id):
     finally:
         conn.close()
 
+init_db()  
+
 if __name__ == "__main__":
-    init_db()
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
