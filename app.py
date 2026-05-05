@@ -4,9 +4,6 @@ import sqlite3
 import datetime
 import os
 import cloudinary.api
-import base64
-from googleapiclient.http import MediaIoBaseUpload
-import io
 import pytz
 import cloudinary
 import cloudinary.uploader
