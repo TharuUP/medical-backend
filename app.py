@@ -13,6 +13,8 @@ import os
 
 app = Flask(__name__)
 
+init_db()
+
 CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 
 DB_FILE = 'medical_assistance.db'
